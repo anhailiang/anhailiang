@@ -23,6 +23,8 @@ select * from sp where qty>='300' and qty<='500';
 
 #9
 
+#10
+
 
 
 
