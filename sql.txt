@@ -21,6 +21,8 @@ select * from sp where qty>='300' and qty<='500';
 
 *8
 
+#9
+
 
 
 
