@@ -19,6 +19,8 @@ select * from sp where qty>='300' and qty<='500';
 
 #7查询供应商s3没有供应的零件名称
 
+*8
+
 
 
 
