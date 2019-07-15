@@ -1,0 +1,77 @@
+select * from s;
+select * from p;
+select * from sp;
+
+#1查询供应商零件号为P1的供应商号码
+select * from p where pno='p1';
+
+#2查询供货量在300-500之间的所有供货情况
+select * from sp where qty>='300' and qty<='500';
+
+#3查询供应红色零件的供应商号码和供应商名称
+(select pno from sp where pno in (select pno from p where color='red'))
+
+#4查询重量在15以下，Paris供应商供应的零件代码和零件名
+
+#5由London供应商供应的零件名称
+
+#6查询不供应红色零件的供应商名称
+
+#7查询供应商s3没有供应的零件名称
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#1查询供应商零件号为P1的供应商号码
+select * from p where pno='p1';
+#2查询供货量在300-500之间的所有供货情况
+select * from sp where qty >=300 and qty <=500;
+#3查询供应红色零件的供应商号码和供应商名称
+
+
+#4查询重量在15以下，Paris供应商供应的零件代码和零件名
+select pno,pname from p where weight>15 and pno=any(select pno from sp where sno=any(select sno from s where ciiy='paris'))
+#5由London供应商供应的零件名称
+select sno from s where ciiy='london'
+select pno from sp where sno in('s1')
+select pname from p where pno in(select pno from sp where sno in(select sno from s where ciiy='london'))
+#6查询不供应红色零件的供应商名称
+select pno from p where color!='red'
+select distinct sno from sp where pno in(select pno from p where color!='red')
+select sname from s where sno in(select distinct sno from sp where pno in(select pno from p where color!='red'))
+#7查询供应商s3没有供应的零件名称
+select distinct sno from sp where sno!='s3'
+select distinct pname from p where pno not in(select sno from sp where sno='s3')
+#查询供应零件代码为p1，p2两种零件的供应商名称
+select sno from sp where pno='p1' or pno='p2' group by sno having count(sno)>1;
+select sname from s where sno in(select sno from sp where pno='p1' or pno='p2' group by sno having count(sno)>1);
+#8查询供应零件代码为P1 和P2两种零件的供应商名称
+SELECT DISTINCT(s.SNAME) FROM SP sp LEFT JOIN P p ON sp.PNO = p.PNO LEFT JOIN  S s ON s.SNO =sp.SNO WHERE p.PNO IN ('p1','p2')  
+#9查询与零件名Nut颜色相同的零件代码和供应商名称
+select color from p where pname='Nut'
+select pno,pname from p where color=(select color from p where pname='Nut');
+#10查询供应了全部零件的供应商名称
+select sno from sp
+select sno from sp group by sno having count(sno)>5
+select sname from s where sno in(select sno from sp group by sno having count(sno)>5)
