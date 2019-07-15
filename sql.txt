@@ -8,24 +8,6 @@ select * from p where pno='p1';
 #2查询供货量在300-500之间的所有供货情况
 select * from sp where qty>='300' and qty<='500';
 
-#3查询供应红色零件的供应商号码和供应商名称
-(select pno from sp where pno in (select pno from p where color='red'))
-
-#4查询重量在15以下，Paris供应商供应的零件代码和零件名
-
-#5由London供应商供应的零件名称
-
-#6查询不供应红色零件的供应商名称
-
-#7查询供应商s3没有供应的零件名称
-
-*8
-
-#9
-
-#10
-
-#11
 
 
 
